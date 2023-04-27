@@ -16,5 +16,3 @@ This is the first iteration of a template that I hope will save a lot of work in
     - [ ] Buttons with custom events
     - [ ] Default formatting functions based on the data type and custom formatting functions passed to the component as props
 - [ ] Placeholder components
-
-test_git_credentials
