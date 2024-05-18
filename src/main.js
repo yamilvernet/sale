@@ -4,5 +4,6 @@ import router from './router'
 
 import bootstrap from 'bootstrap' // eslint-disable-line
 import '@/assets/scss/bootstrap.custom.scss';
+import '@/assets/scss/custom.scss';
 
 createApp(App).use(router).mount('#app')

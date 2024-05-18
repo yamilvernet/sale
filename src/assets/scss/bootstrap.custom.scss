@@ -1,36 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 // Override
 $white:#fff;
 $body-color: #2d3335;
 $body-secondary-color: #667074;
-$body-bg: #eff3f5;
+$body-bg: #ffffff;
 $font-family-sans-serif:  'Ubuntu', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-
-
+// Modifica los colores base
 $primary: #4F00F6;
-$secondary: #7D00FA;
-$danger: #FF134C;
-$success: #06E1B0;
-$warning: #FFBD12;
+$secondary: #E6D9FF;
+$success: #198754;
 $info: #1BE4FF;
-$light: #D1D1D1;
+$warning: #ffc107;
+$danger: #FF1717;
+$light: #696969;
+$dark: #343a40;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+);
+
+// variante clara de fondos y color de texto
+.bg-lighten-text-success {
+    background-color: lighten($success, 55%);
+    color: darken($success, 5%);
+}
+.bg-lighten-text-danger {
+    background-color: lighten($danger, 35%);
+    color: darken($danger, 10%);
+}
+// fin variantes
+
+$text-colors: (
+  "body": #2d3335, // Color del texto principal
+  "muted": #6c757d, // Color del texto atenuado
+);
 
 // Global
-$border-radius:1.5rem;
+$border-radius:2rem;
 $spacer: 1.5rem;
 
 // Alert
 $alert-border-width:0;
 
-// Button
-$btn-border-radius: .6rem;
-
 // Cards
 $card-bg: $white;
 $card-border-color: #dee6e9;
 $card-title-spacer-y: $spacer + .8rem;
+
+// List
+$list-group-bg:$white;
 
 .card-title {
     font-weight:bold;
@@ -39,13 +77,23 @@ $card-title-spacer-y: $spacer + .8rem;
 
 // Form
 $input-bg:$white;
-$input-border-radius: .6rem;
+$input-border-radius: 1rem;
 $input-border-color: #b1bdc2;
 
 $form-label-font-weight: 400;
 
+.form-check.form-check-box {
+    @extend .p-1;
+    @extend .ps-2;
+}
+
+.form-check.form-check-box  .form-check-input {
+    margin-left: 0;
+    margin-right: .25rem;
+}
+
 // Focus ring
-$focus-ring-width:      .1rem;
+// $focus-ring-width:      .1rem;
 // $focus-ring-opacity:    2;
 // $focus-ring-color:      darken($primary, 100%);
 // $focus-ring-blur:       0 !default;
@@ -55,42 +103,169 @@ $focus-ring-width:      .1rem;
 // Table 
 $table-th-font-weight:  normal;
 
+$offcanvas-bg-color:#fff;
+$offcanvas-vertical-height:80vh;
+// $offcanvas-padding-y: .75rem;
+$offcanvas-padding-x: .75rem;
+
+
+
 
 
 @import "bootstrap/scss/bootstrap";
 
-.card-sm {
-    @extend .card;
+// .offcanvas {
+    // }
+
+.w-min {
+    width: min-content;
+}
+    
+.offcanvas.offcanvas-bottom {
+    overflow-y: scroll;
+    border-radius: $border-radius/2 $border-radius/2 0 0;
+    height: min-content !important;
+    max-height: $offcanvas-vertical-height !important;
 }
 
-.card-sm .card-text {
-    @extend .lh-1;
-    @extend .text-muted;
-    @extend .small;
+.offcanvas-body {padding-top:0}
+
+.offcanvas-title {
+    @extend .fw-bold
 }
 
-.card-subtitle {
-    margin-top: calc(-0.8 * var(--bs-card-title-spacer-y));
-    opacity: .65;
+@media (min-width: 768px) {
+    .container-md, .container-sm, .container {
+        max-width: 570px;
+    }
+}
+@media (min-width: 991.98px) {
+    .container-md, .container-sm, .container {
+        max-width: 640px;
+    }
 }
 
-.row-sm {
-    @extend .row;
+.btn-secondary {
+    color:$primary
 }
 
-.row-sm .col {
-    padding-right: .5rem;
-    padding-left: .5rem;
+.btn-outline-secondary {
+    color:$primary;
+    background-color: $secondary;
+    border-color: $primary;
 }
 
+.btn-lg {
+    border-radius: $border-radius;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    font-size: 1rem
+}
+
+.btn-sm {
+    border-radius: $border-radius;
+}
+
+.btn-icon {
+    @extend .d-flex-center-center;
+
+    svg {
+        @extend .me-1;
+    }
+}
+
+.form-label {
+    padding-left:.25rem
+}
+
+.section-title {
+    @extend .h6;
+    @extend .fw-bold;
+    @extend .ps-1;
+}
+
+.badge-name {
+    height:22px;
+    font-size: .75rem;
+}
+
+.badge-name-circle {
+    height:22px;
+    width: 22px;
+    font-size: .75rem;
+    padding: 0;
+    background-color: white;
+    margin-left: -6px;
+    @extend .d-flex-center-center
+}
+
+.sqr-24 {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: cover
+}
+
+.sqr-28 {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: block;
+    object-fit: cover
+}
+
+.sqr-32 {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    object-fit: cover
+}
+
+.sqr-48 {
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    object-fit: cover
+}
+
+.d-flex-center-center {
+    @extend .d-flex;
+    @extend .align-items-center;
+    @extend .justify-content-center;
+}
+.d-flex-center-between {
+    @extend .d-flex;
+    @extend .align-items-center;
+    @extend .justify-content-between;
+}
+.d-flex-center-start {
+    @extend .d-flex;
+    @extend .align-items-center;
+    @extend .justify-content-start;
+}
+.d-flex-center-end {
+    @extend .d-flex;
+    @extend .align-items-center;
+    @extend .justify-content-end;
+}
 .card-action {
  @extend .card;
 }
 
 .card-action .card-body {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
+
+.card-action .card-body .card-action-slot {
+    width: 49%;
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 576px) { 
+    .card-action .card-body .card-action-slot {
+        width: 24%;
+    }
+ }
 
 .card-button {
     @extend .small;
@@ -112,33 +287,11 @@ $table-th-font-weight:  normal;
 }
 
 .card-button-icon svg{
-    width: 1.5rem;
-    height: 1.5rem;
-    fill: $primary;
+    // width: 1.5rem;
+    // height: 1.5rem;
+    color:$primary
+    // fill: $primary;
 }
-
-.heading {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    @extend .mb-2;
-    @extend .ps-1;
-}
-
-.heading > * {
-    margin-bottom: 0;
-    @extend .fw-bold;
-}
-
-.heading-action {
-    font-size: .875rem;
-    font-weight: normal !important;
-    background: none;
-    border: 0;
-    color:$body-secondary-color;
-}
-
-
 
 // Table override
 // .table > tbody > tr > td {
